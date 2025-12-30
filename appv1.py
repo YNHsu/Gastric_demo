@@ -71,6 +71,6 @@ if imgname is not None:
         st.write('Body:', B_count)
 
         F = os.listdir('Step2and3_ABF/F/')
-        F_count = len(A)
+        F_count = len(F)
         # st.subheader('Fundus:', F_count)
         st.write('Fundus:', F_count)
