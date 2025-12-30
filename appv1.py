@@ -28,9 +28,9 @@ imgname = st.selectbox('Select the patient', (None, 'P249750000282','6244535'))
 
 if imgname is not None:
     images = os.listdir('gastric_image/')
-    images_count = len(images)
+    st.session_state.images_count = len(images)
     # st.subheader('Raw image:', images_count)
-    st.write('Raw image:', images_count)
+    st.write('Raw image:', st.session_state.images_count)
   
     # img = Image.open(f'CTimage/{imgname}')
     # st.subheader('CT image')
@@ -40,9 +40,9 @@ if imgname is not None:
     exclude = st.button('Click here to exclude')
     if exclude is True:
         keep_images = os.listdir('Step1_ExclusionCriteria/')
-        keep_images_count = len(keep_images)
+        st.session_state.keep_images_count = len(keep_images)
         # st.subheader('Step1_ExclusionCriteria:', keep_images_count)
-        st.write('Step1_ExclusionCriteria:', keep_images_count)
+        st.write('Step1_ExclusionCriteria:', st.session_state.keep_images_count)
       
         # st.text('Predicting...')
         # col1, col2 = st.columns(2)
@@ -61,16 +61,16 @@ if imgname is not None:
     ABF = st.button('Click here to recognize Antrum/Body/Fundus')
     if ABF is True:
         A = os.listdir('Step2and3_ABF/A/')
-        A_count = len(A)
-        # st.subheader('Antrum:', A_count)
+        st.session_state.A_count = len(A)
+        # st.subheader('Antrum:', st.session_state.A_count)
         st.write('Antrum:', A_count)
       
         B = os.listdir('Step2and3_ABF/B/')
-        B_count = len(B)
+        st.session_state.B_count = len(B)
         # st.subheader('Body:', B_count)
-        st.write('Body:', B_count)
+        st.write('Body:', st.session_state.B_count)
 
         F = os.listdir('Step2and3_ABF/F/')
-        F_count = len(F)
+        st.session_state.F_count = len(F)
         # st.subheader('Fundus:', F_count)
-        st.write('Fundus:', F_count)
+        st.write('Fundus:', st.session_state.F_count)
