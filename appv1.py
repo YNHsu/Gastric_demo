@@ -29,7 +29,8 @@ imgname = st.selectbox('Select the patient', (None, 'P249750000282','6244535'))
 if imgname is not None:
     images = os.listdir('gastric_image/')
     images_count = len(images)
-    st.subheader('Raw image:', images_count)
+    # st.subheader('Raw image:', images_count)
+    st.write('Raw image:', images_count)
   
     # img = Image.open(f'CTimage/{imgname}')
     # st.subheader('CT image')
@@ -40,7 +41,8 @@ if imgname is not None:
     if exclude is True:
         images = os.listdir('Step1_ExclusionCriteria/')
         images_count = len(images)
-        st.subheader('Step1_ExclusionCriteria:', images_count)
+        # st.subheader('Step1_ExclusionCriteria:', images_count)
+        st.write('Step1_ExclusionCriteria:', images_count)
       
         # st.text('Predicting...')
         # col1, col2 = st.columns(2)
@@ -60,12 +62,15 @@ if imgname is not None:
     if ABF is True:
         A = os.listdir('Step2and3_ABF/A/')
         A_count = len(A)
-        st.subheader('Antrum:', A_count)
+        # st.subheader('Antrum:', A_count)
+        st.write('Antrum:', A_count)
       
         B = os.listdir('Step2and3_ABF/B/')
         B_count = len(B)
-        st.subheader('Body:', B_count)
+        # st.subheader('Body:', B_count)
+        st.write('Body:', B_count)
 
         F = os.listdir('Step2and3_ABF/F/')
         F_count = len(A)
-        st.subheader('Fundus:', F_count)
+        # st.subheader('Fundus:', F_count)
+        st.write('Fundus:', F_count)
