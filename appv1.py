@@ -63,7 +63,7 @@ if imgname is not None:
         A = os.listdir('Step2and3_ABF/A/')
         st.session_state.A_count = len(A)
         # st.subheader('Antrum:', st.session_state.A_count)
-        st.write('Antrum:', A_count)
+        st.write('Antrum:', st.session_state.A_count)
       
         B = os.listdir('Step2and3_ABF/B/')
         st.session_state.B_count = len(B)
