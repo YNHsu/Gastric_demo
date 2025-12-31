@@ -87,8 +87,8 @@ if imgname is not None:
         st.session_state.B = None
     if "F_count" not in st.session_state:
         st.session_state.F_count = None
-    if "F_count" not in st.session_state:
-        st.session_state.F_count = None
+    if "F" not in st.session_state:
+        st.session_state.F = None
 
     # ===== Step 1 =====
     st.subheader("Step 1: Exclusion criteria-blurred image, NBI, Polyp, Ulcer, Tumor")
