@@ -42,7 +42,7 @@ if imgname is not None:
         keep_images = os.listdir('Step1_ExclusionCriteria/')
         st.session_state.keep_images_count = len(keep_images)
         # st.subheader('Step1_ExclusionCriteria:', keep_images_count)
-        st.write('Step1_ExclusionCriteria:', st.session_state.keep_images_count)
+    st.write('Step1_ExclusionCriteria:', st.session_state.keep_images_count)
       
         # st.text('Predicting...')
         # col1, col2 = st.columns(2)
