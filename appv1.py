@@ -1,6 +1,7 @@
 import os
 import streamlit as st
 import numpy as np
+import pandas as pd
 from PIL import Image
 import time
 
@@ -9,12 +10,7 @@ import time
 # App Title
 st.title("Gastric cancer prediction")
 
-st.markdown(unsafe_allow_html=True, body="<p>In this web, you can select the patient folder and predict the probability of gastric cancer.</p>"
-                                         "<p>Step1.</p>"
-                                         "<p>Step2&3.</p>"
-                                         "<p>Step4.</p>"
-                                         "<p>Step5.</p>"
-                                         "<p>Step6.</p>")
+st.markdown(unsafe_allow_html=True, body="<p>In this web, you can select the patient folder and predict the probability of gastric cancer.</p>")
                                         
 
 # =============================================================================
@@ -89,7 +85,7 @@ if imgname is not None:
       st.session_state.F_count = None
     
     # ===== Step 1 =====
-    st.subheader("Step 1: Exclusion criteria")
+    st.subheader("Step 1: Exclusion criteria-blurred image, NBI, Polyp, Ulcer, Tumor")
     
     if st.session_state.step == 1:
         if st.button('Click here to exclude'):
@@ -97,15 +93,15 @@ if imgname is not None:
             st.session_state.keep_images_count = len(keep_images)
             st.session_state.step = 2   # 前進到下一步
     
-    # 顯示 Step 1 結果（永遠保留）
+    # 顯示 Step 1 結果（保留）
     if st.session_state.keep_images_count is not None:
         st.write('Step1_Exclusion criteria:', st.session_state.keep_images_count)
     
     
     # ===== Step 2 =====
-    st.subheader("Step 2: Gastric-Antrum/Body/Fundus classification")
+    st.subheader("Step 2 and 3: Gastric-Antrum/Body/Fundus classification")
     
-    if st.session_state.step >= 2:
+    if st.session_state.step = 2:
         if st.button('Click here to classify Antrum/Body/Fundus'):
             A = os.listdir('Step2and3_ABF/A/')
             st.session_state.A_count = len(A)
@@ -119,22 +115,51 @@ if imgname is not None:
     cols = st.columns(5)
     if st.session_state.A_count is not None:
         st.write('Antrum:', st.session_state.A_count)
-        cols = st.columns(5)
+        cols = st.columns(10)
         for idx, img_name in enumerate(A):
             img_path = os.path.join('Step2and3_ABF/A/', img_name)
             image = Image.open(img_path)
-            cols[idx % 5].image(image, caption=img_name, use_container_width=True)
+            cols[idx % 5].image(image, use_container_width=True)    # caption=img_name
     if st.session_state.B_count is not None:
         st.write('Body:', st.session_state.B_count)
-        cols = st.columns(5)
+        cols = st.columns(10)
         for idx, img_name in enumerate(B):
             img_path = os.path.join('Step2and3_ABF/B/', img_name)
             image = Image.open(img_path)
-            cols[idx % 5].image(image, caption=img_name, use_container_width=True)
+            cols[idx % 5].image(image, use_container_width=True)    # caption=img_name
     if st.session_state.F_count is not None:
         st.write('Fundus:', st.session_state.F_count)
-        cols = st.columns(5)
+        cols = st.columns(10)
         for idx, img_name in enumerate(F):
             img_path = os.path.join('Step2and3_ABF/F/', img_name)
             image = Image.open(img_path)
-            cols[idx % 5].image(image, caption=img_name, use_container_width=True)
+            cols[idx % 5].image(image, use_container_width=True)    # caption=img_name
+
+    # ===== Step 3 =====
+    st.subheader("Step 4: HP(Helicobacter pylori) prediction")
+  
+    if st.session_state.step = 3:
+        if st.button('Click here to predict HP'):
+            st.write('HP prediction =', 1)
+            st.session_state.step = 4
+
+    # ===== Step 4 =====
+    st.subheader("Step 5 and 6: Histology prediction-AG(Atrophic gastritis), IM(Intestinal metaplasia)")
+  
+    if st.session_state.step = 4:
+        if st.button('Click here to predict AG, IM'):
+            st.write('AG_Antrum prediction =', 0)
+            st.write('AG_Body prediction =', 1)
+            st.write('IM_Antrum prediction =', 1)
+            st.write('IM_Body prediction =', 1)
+            st.session_state.step = 5
+
+    # ===== Step 5 =====
+    st.subheader("Step 7: Gastric cancer prediction")
+
+    df = pd.DataFrame(['HP', 'AG_Antrum', 'AG_Body', 'IM_Antrum', 'IM_Body', 'Age', 'Gender'], [1, 0, 1, 1, 1, 66, 1])  
+    st.dataframe(df, use_container_width=True)
+    if st.session_state.step = 5:
+        if st.button('Click here to predict the probability of gastric cancer'):
+            st.write('Gastric cancer prediction =', 0.925)
+            # st.session_state.step = 6
