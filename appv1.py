@@ -109,7 +109,9 @@ if imgname is not None:
     if st.session_state.step == 3:
         if st.button('Click here to predict HP'):
             time.sleep(1)
-            st.write('HP prediction =', 1)
+            st.session_state.pred_hp = 1
+    if "pred_hp" in st.session_state:  
+            st.write('HP prediction =', st.session_state.pred_hp)
             st.session_state.step = 4
 
     # ===== Step 4 =====
@@ -127,10 +129,10 @@ if imgname is not None:
     # ===== Step 5 =====
     st.subheader("Step 7: Gastric cancer prediction")
   
-    if st.session_state.step == 5:
-        # if st.button('Click here to show the predictions'):
-        st.session_state.df = pd.DataFrame({'Feature': ['HP', 'AG_Antrum', 'AG_Body', 'IM_Antrum', 'IM_Body', 'Age', 'Gender'], 'P249750000282': [1, 0, 1, 1, 1, 66, 1]}) 
-        # st.session_state.step = 6
+    if st.session_state.step >= 5:
+        if st.button('Summary the prediction'):
+            st.session_state.df = pd.DataFrame({'Feature': ['HP', 'AG_Antrum', 'AG_Body', 'IM_Antrum', 'IM_Body', 'Age', 'Gender'], 'P249750000282': [1, 0, 1, 1, 1, 66, 1]}) 
+            # st.session_state.step = 6
           
         if st.session_state.df is not None:
             st.dataframe(st.session_state.df, use_container_width=True)
@@ -138,7 +140,7 @@ if imgname is not None:
       
     # ===== Step 6 =====
     # if st.session_state.step == 6:
-        if st.button('Click here to predict the probability of gastric cancer'):
-            time.sleep(1)
-            st.write('Gastric cancer prediction =', 0.925)
-            # st.session_state.step = 6
+         if st.button('Click here to predict the probability of gastric cancer'):
+              time.sleep(1)
+              st.write('Gastric cancer prediction =', 0.925)
+              # st.session_state.step = 6
