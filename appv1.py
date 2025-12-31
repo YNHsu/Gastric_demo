@@ -110,8 +110,8 @@ if imgname is not None:
   
     if st.session_state.step == 3:
         if st.button('Click here to predict HP'):
-            time.sleep(2)
             st.session_state.pred_hp = 1
+    time.sleep(1)      
     if "pred_hp" in st.session_state:  
             st.write('HP prediction =', st.session_state.pred_hp)
             st.session_state.step = 4
@@ -120,10 +120,10 @@ if imgname is not None:
     st.subheader("Step 5 and 6: Histology prediction-AG(Atrophic gastritis), IM(Intestinal metaplasia)")
   
     if st.session_state.step == 4:
-        if st.button('Click here to predict AG, IM'):
-            time.sleep(2)
+        if st.button('Click here to predict AG, IM'):  
             st.session_state.pred_AG_A = 0
             st.session_state.pred_AG_B_IM_A_B = 1
+    time.sleep(2)
     if "pred_AG_A" in st.session_state and "pred_AG_B_IM_A_B" in st.session_state:  
         st.write('AG_Antrum prediction = ', st.session_state.pred_AG_A)
         st.write('AG_Body prediction = ', st.session_state.pred_AG_B_IM_A_B)
@@ -136,7 +136,7 @@ if imgname is not None:
   
     if st.session_state.step == 5:
         st.session_state.df = pd.DataFrame({'Feature': ['HP', 'AG_Antrum', 'AG_Body', 'IM_Antrum', 'IM_Body', 'Age', 'Gender'], 'P249750000282': [1, 0, 1, 1, 1, 66, 1]}) 
-        time.sleep(3)
+    time.sleep(3)
     if st.session_state.df is not None:
         st.write('Overall summary')
         st.dataframe(st.session_state.df, use_container_width=True)
