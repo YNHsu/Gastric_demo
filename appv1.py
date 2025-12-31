@@ -139,7 +139,7 @@ if imgname is not None:
         st.write('Overall summary')
         st.dataframe(st.session_state.df, use_container_width=True)
       
-    if st.button('Click here to predict the probability of gastric cancer'):
-        time.sleep(1)
-        st.write('Gastric cancer prediction =', 0.925)
+        if st.button('Click here to predict the probability of gastric cancer'):
+            time.sleep(1)
+            st.write('Gastric cancer prediction =', 0.925)
 
