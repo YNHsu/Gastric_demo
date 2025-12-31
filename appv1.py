@@ -79,11 +79,13 @@ if imgname is not None:
         st.session_state.keep_images_count = None    
     if "A_count" not in st.session_state:
         st.session_state.A_count = None
+    if "A" not in st.session_state:
+        st.session_state.A = None
     if "B_count" not in st.session_state:
       st.session_state.B_count = None
     if "F_count" not in st.session_state:
       st.session_state.F_count = None
-    
+
     # ===== Step 1 =====
     st.subheader("Step 1: Exclusion criteria-blurred image, NBI, Polyp, Ulcer, Tumor")
     
@@ -116,10 +118,11 @@ if imgname is not None:
     if st.session_state.A_count is not None:
         st.write('Antrum:', st.session_state.A_count)
         cols = st.columns(10)
-        for idx, img_name in enumerate(A):
-            img_path = os.path.join('Step2and3_ABF/A/', img_name)
-            image = Image.open(img_path)
-            cols[idx % 5].image(image, use_container_width=True)    # caption=img_name
+        if st.session_state.A is not None:
+          for idx, img_name in enumerate(A):
+              img_path = os.path.join('Step2and3_ABF/A/', img_name)
+              image = Image.open(img_path)
+              cols[idx % 5].image(image, use_container_width=True)    # caption=img_name
     if st.session_state.B_count is not None:
         st.write('Body:', st.session_state.B_count)
         cols = st.columns(10)
@@ -156,11 +159,12 @@ if imgname is not None:
 
     # ===== Step 5 =====
     st.subheader("Step 7: Gastric cancer prediction")
-    
-    if st.button('Click here to show the predictions'):
-        df = pd.DataFrame(['HP', 'AG_Antrum', 'AG_Body', 'IM_Antrum', 'IM_Body', 'Age', 'Gender'], [1, 0, 1, 1, 1, 66, 1])  
-        st.dataframe(df, use_container_width=True)
-        st.session_state.step = 6
+  
+    if st.session_state.step == 5:
+      if st.button('Click here to show the predictions'):
+          df = pd.DataFrame({'Feature': ['HP', 'AG_Antrum', 'AG_Body', 'IM_Antrum', 'IM_Body', 'Age', 'Gender'], 'P249750000282': [1, 0, 1, 1, 1, 66, 1]})  
+          st.dataframe(df, use_container_width=True)
+          st.session_state.step = 6
       
     # ===== Step 5 =====
     if st.session_state.step == 6:
