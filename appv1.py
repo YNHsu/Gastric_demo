@@ -77,7 +77,7 @@ if imgname is not None:
             st.session_state.step = 3
     
     # Show Step 2 result
-    cols = st.columns(5)
+    time.sleep(1)
     if st.session_state.A_count is not None:
         st.write('Antrum:', st.session_state.A_count)
         cols = st.columns(10)
@@ -86,6 +86,7 @@ if imgname is not None:
                 img_path = os.path.join('Step2and3_ABF/A/', img_name)
                 image = Image.open(img_path)
                 cols[idx % 5].image(image, use_container_width=True)    # caption=img_name
+    time.sleep(1)        
     if st.session_state.B_count is not None:
         st.write('Body:', st.session_state.B_count)
         cols = st.columns(10)
@@ -94,6 +95,7 @@ if imgname is not None:
                 img_path = os.path.join('Step2and3_ABF/B/', img_name)
                 image = Image.open(img_path)
                 cols[idx % 5].image(image, use_container_width=True)    # caption=img_name
+    time.sleep(1)
     if st.session_state.F_count is not None:
         st.write('Fundus:', st.session_state.F_count)
         cols = st.columns(10)
@@ -108,7 +110,7 @@ if imgname is not None:
   
     if st.session_state.step == 3:
         if st.button('Click here to predict HP'):
-            time.sleep(1)
+            time.sleep(2)
             st.session_state.pred_hp = 1
     if "pred_hp" in st.session_state:  
             st.write('HP prediction =', st.session_state.pred_hp)
@@ -119,7 +121,7 @@ if imgname is not None:
   
     if st.session_state.step == 4:
         if st.button('Click here to predict AG, IM'):
-            time.sleep(1)
+            time.sleep(2)
             st.session_state.pred_AG_A = 0
             st.session_state.pred_AG_B_IM_A_B = 1
     if "pred_AG_A" in st.session_state and "pred_AG_B_IM_A_B" in st.session_state:  
