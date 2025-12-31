@@ -119,7 +119,7 @@ if imgname is not None:
     cols = st.columns(5)
     if st.session_state.A_count is not None:
         st.write('Antrum:', st.session_state.A_count)
-        for img_name in A:
+        for idx, img_name in A:
             img_path = os.path.join('Step2and3_ABF/A/', img_name)
             image = Image.open(img_path)
             cols[idx % 5].image(image, caption=img_name, use_container_width=True)
@@ -127,7 +127,7 @@ if imgname is not None:
         st.write('Body:', st.session_state.B_count)
     if st.session_state.F_count is not None:
         st.write('Fundus:', st.session_state.F_count)
-        for img_name in F:
+        for idx, img_name in F:
             img_path = os.path.join('Step2and3_ABF/F/', img_name)
             image = Image.open(img_path)
             cols[idx % 5].image(image, caption=img_name, use_container_width=True)
