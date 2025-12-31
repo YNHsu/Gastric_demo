@@ -78,17 +78,18 @@ if imgname is not None:
 
     # 初始化流程狀態
     if "step" not in st.session_state:
-        st.session_state.step = 1
-    
+        st.session_state.step = 1    
     if "keep_images_count" not in st.session_state:
-        st.session_state.keep_images_count = None
-    
+        st.session_state.keep_images_count = None    
     if "A_count" not in st.session_state:
         st.session_state.A_count = None
-    
+    if "B_count" not in st.session_state:
+      st.session_state.B_count = None
+    if "F_count" not in st.session_state:
+      st.session_state.F_count = None
     
     # ===== Step 1 =====
-    st.subheader("Step 1: Exclusion")
+    st.subheader("Step 1: Exclusion criteria")
     
     if st.session_state.step == 1:
         if st.button('Click here to exclude'):
@@ -98,19 +99,26 @@ if imgname is not None:
     
     # 顯示 Step 1 結果（永遠保留）
     if st.session_state.keep_images_count is not None:
-        st.write('Step1_ExclusionCriteria:', st.session_state.keep_images_count)
+        st.write('Step1_Exclusion criteria:', st.session_state.keep_images_count)
     
     
     # ===== Step 2 =====
-    st.subheader("Step 2: Recognize Antrum / Body / Fundus")
+    st.subheader("Step 2: Gastric-Antrum/Body/Fundus classification")
     
     if st.session_state.step >= 2:
-        if st.button('Click here to recognize Antrum/Body/Fundus'):
+        if st.button('Click here to classify Antrum/Body/Fundus'):
             A = os.listdir('Step2and3_ABF/A/')
             st.session_state.A_count = len(A)
+            B = os.listdir('Step2and3_ABF/B/')
+            st.session_state.B_count = len(B)
+            F = os.listdir('Step2and3_ABF/F/')
+            st.session_state.F_count = len(F)
             st.session_state.step = 3
     
     # 顯示 Step 2 結果
     if st.session_state.A_count is not None:
         st.write('Antrum:', st.session_state.A_count)
-
+    if st.session_state.B_count is not None:
+        st.write('Body:', st.session_state.B_count)
+    if st.session_state.F_count is not None:
+        st.write('Fundus:', st.session_state.F_count)
