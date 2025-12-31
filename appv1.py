@@ -112,11 +112,11 @@ if imgname is not None:
     if st.session_state.step == 2:
         if st.button('Click here to classify Antrum/Body/Fundus'):
             st.session_state.A = os.listdir('Step2and3_ABF/A/')
-            st.session_state.A_count = len(A)
+            st.session_state.A_count = len(st.session_state.A)
             st.session_state.B = os.listdir('Step2and3_ABF/B/')
-            st.session_state.B_count = len(B)
+            st.session_state.B_count = len(st.session_state.B)
             st.session_state.F = os.listdir('Step2and3_ABF/F/')
-            st.session_state.F_count = len(F)
+            st.session_state.F_count = len(st.session_state.F)
             st.session_state.step = 3
     
     # 顯示 Step 2 結果
