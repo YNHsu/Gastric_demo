@@ -140,7 +140,7 @@ if imgname is not None:
       
     # ===== Step 6 =====
     # if st.session_state.step == 6:
-         if st.button('Click here to predict the probability of gastric cancer'):
-              time.sleep(1)
-              st.write('Gastric cancer prediction =', 0.925)
+        if st.button('Click here to predict the probability of gastric cancer'):
+            time.sleep(1)
+            st.write('Gastric cancer prediction =', 0.925)
               # st.session_state.step = 6
