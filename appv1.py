@@ -82,9 +82,13 @@ if imgname is not None:
     if "A" not in st.session_state:
         st.session_state.A = None
     if "B_count" not in st.session_state:
-      st.session_state.B_count = None
+        st.session_state.B_count = None
+    if "B" not in st.session_state:
+        st.session_state.B = None
     if "F_count" not in st.session_state:
-      st.session_state.F_count = None
+        st.session_state.F_count = None
+    if "F_count" not in st.session_state:
+        st.session_state.F_count = None
 
     # ===== Step 1 =====
     st.subheader("Step 1: Exclusion criteria-blurred image, NBI, Polyp, Ulcer, Tumor")
@@ -119,24 +123,26 @@ if imgname is not None:
         st.write('Antrum:', st.session_state.A_count)
         cols = st.columns(10)
         if st.session_state.A is not None:
-          for idx, img_name in enumerate(A):
-              img_path = os.path.join('Step2and3_ABF/A/', img_name)
-              image = Image.open(img_path)
-              cols[idx % 5].image(image, use_container_width=True)    # caption=img_name
+            for idx, img_name in enumerate(A):
+                img_path = os.path.join('Step2and3_ABF/A/', img_name)
+                image = Image.open(img_path)
+                cols[idx % 5].image(image, use_container_width=True)    # caption=img_name
     if st.session_state.B_count is not None:
         st.write('Body:', st.session_state.B_count)
         cols = st.columns(10)
-        for idx, img_name in enumerate(B):
-            img_path = os.path.join('Step2and3_ABF/B/', img_name)
-            image = Image.open(img_path)
-            cols[idx % 5].image(image, use_container_width=True)    # caption=img_name
+        if st.session_state.B is not None:
+            for idx, img_name in enumerate(B):
+                img_path = os.path.join('Step2and3_ABF/B/', img_name)
+                image = Image.open(img_path)
+                cols[idx % 5].image(image, use_container_width=True)    # caption=img_name
     if st.session_state.F_count is not None:
         st.write('Fundus:', st.session_state.F_count)
         cols = st.columns(10)
-        for idx, img_name in enumerate(F):
-            img_path = os.path.join('Step2and3_ABF/F/', img_name)
-            image = Image.open(img_path)
-            cols[idx % 5].image(image, use_container_width=True)    # caption=img_name
+        if st.session_state.F is not None:
+            for idx, img_name in enumerate(F):
+                img_path = os.path.join('Step2and3_ABF/F/', img_name)
+                image = Image.open(img_path)
+                cols[idx % 5].image(image, use_container_width=True)    # caption=img_name
 
     # ===== Step 3 =====
     st.subheader("Step 4: HP(Helicobacter pylori) prediction")
