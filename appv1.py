@@ -37,40 +37,66 @@ if imgname is not None:
     # st.image(img, width=340, caption=f'{imgname}')
     
     
-    exclude = st.button('Click here to exclude')
-    if exclude is True:
+    # exclude = st.button('Click here to exclude')
+    # if exclude is True:
+    #     keep_images = os.listdir('Step1_ExclusionCriteria/')
+    #     st.session_state.keep_images_count = len(keep_images)
+    #     # st.subheader('Step1_ExclusionCriteria:', keep_images_count)
+    # st.write('Step1_ExclusionCriteria:', st.session_state.keep_images_count)
+      
+    #     # st.text('Predicting...')
+    #     # col1, col2 = st.columns(2)
+        
+    #     # time.sleep(1)
+    #     # Segment = Image.open(f'CToverlay/{imgname}')
+    #     # col1.subheader('Segmentation')
+    #     # col1.image(Segment, use_column_width=True)
+    #     # col1.text('Red line (Ground Truth)\nBlue line (Prediction)')
+        
+    #     # time.sleep(1)
+    #     # GradCAM = Image.open(f'GradCAM/{imgname}')
+    #     # col2.subheader('GradCAM')
+    #     # col2.image(GradCAM, use_column_width=True)
+  
+    # ABF = st.button('Click here to recognize Antrum/Body/Fundus')
+    # if ABF is True:
+    #     A = os.listdir('Step2and3_ABF/A/')
+    #     st.session_state.A_count = len(A)
+    #     # st.subheader('Antrum:', st.session_state.A_count)
+    #     st.write('Antrum:', st.session_state.A_count)
+      
+    #     B = os.listdir('Step2and3_ABF/B/')
+    #     st.session_state.B_count = len(B)
+    #     # st.subheader('Body:', B_count)
+    #     st.write('Body:', st.session_state.B_count)
+
+    #     F = os.listdir('Step2and3_ABF/F/')
+
+
+
+      # 初始化（很重要）
+    if "keep_images_count" not in st.session_state:
+        st.session_state.keep_images_count = None
+    
+    if "A_count" not in st.session_state:
+        st.session_state.A_count = None
+    
+    # Button 1
+    if st.button('Click here to exclude'):
         keep_images = os.listdir('Step1_ExclusionCriteria/')
         st.session_state.keep_images_count = len(keep_images)
-        # st.subheader('Step1_ExclusionCriteria:', keep_images_count)
-    st.write('Step1_ExclusionCriteria:', st.session_state.keep_images_count)
-      
-        # st.text('Predicting...')
-        # col1, col2 = st.columns(2)
-        
-        # time.sleep(1)
-        # Segment = Image.open(f'CToverlay/{imgname}')
-        # col1.subheader('Segmentation')
-        # col1.image(Segment, use_column_width=True)
-        # col1.text('Red line (Ground Truth)\nBlue line (Prediction)')
-        
-        # time.sleep(1)
-        # GradCAM = Image.open(f'GradCAM/{imgname}')
-        # col2.subheader('GradCAM')
-        # col2.image(GradCAM, use_column_width=True)
-  
-    ABF = st.button('Click here to recognize Antrum/Body/Fundus')
-    if ABF is True:
+    
+    # Button 2
+    if st.button('Click here to recognize Antrum/Body/Fundus'):
         A = os.listdir('Step2and3_ABF/A/')
         st.session_state.A_count = len(A)
-        # st.subheader('Antrum:', st.session_state.A_count)
+    
+    # ===== 顯示區（獨立）=====
+    if st.session_state.keep_images_count is not None:
+        st.write('Step1_ExclusionCriteria:', st.session_state.keep_images_count)
+    
+    if st.session_state.A_count is not None:
         st.write('Antrum:', st.session_state.A_count)
-      
-        B = os.listdir('Step2and3_ABF/B/')
-        st.session_state.B_count = len(B)
-        # st.subheader('Body:', B_count)
-        st.write('Body:', st.session_state.B_count)
-
-        F = os.listdir('Step2and3_ABF/F/')
-        st.session_state.F_count = len(F)
-        # st.subheader('Fundus:', F_count)
-        st.write('Fundus:', st.session_state.F_count)
+            st.session_state.F_count = len(F)
+            # st.subheader('Fundus:', F_count)
+            st.write('Fundus:', st.session_state.F_count)
