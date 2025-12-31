@@ -85,7 +85,7 @@ if imgname is not None:
             for idx, img_name in enumerate(st.session_state.A):
                 img_path = os.path.join('Step2and3_ABF/A/', img_name)
                 image = Image.open(img_path)
-                cols[idx % 5].image(image, use_container_width=True)    # caption=img_name
+                cols[idx % 10].image(image, use_container_width=True)    # caption=img_name
     time.sleep(1)        
     if st.session_state.B_count is not None:
         st.write('Body:', st.session_state.B_count)
@@ -94,7 +94,7 @@ if imgname is not None:
             for idx, img_name in enumerate(st.session_state.B):
                 img_path = os.path.join('Step2and3_ABF/B/', img_name)
                 image = Image.open(img_path)
-                cols[idx % 5].image(image, use_container_width=True)    # caption=img_name
+                cols[idx % 10].image(image, use_container_width=True)    # caption=img_name
     time.sleep(1)
     if st.session_state.F_count is not None:
         st.write('Fundus:', st.session_state.F_count)
@@ -103,7 +103,7 @@ if imgname is not None:
             for idx, img_name in enumerate(st.session_state.F):
                 img_path = os.path.join('Step2and3_ABF/F/', img_name)
                 image = Image.open(img_path)
-                cols[idx % 5].image(image, use_container_width=True)    # caption=img_name
+                cols[idx % 10].image(image, use_container_width=True)    # caption=img_name
 
     # ===== Step 3 =====
     st.subheader("Step 4: HP(Helicobacter pylori) prediction")
