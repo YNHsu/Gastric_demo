@@ -101,7 +101,7 @@ if imgname is not None:
     # ===== Step 2 =====
     st.subheader("Step 2 and 3: Gastric-Antrum/Body/Fundus classification")
     
-    if st.session_state.step = 2:
+    if st.session_state.step == 2:
         if st.button('Click here to classify Antrum/Body/Fundus'):
             A = os.listdir('Step2and3_ABF/A/')
             st.session_state.A_count = len(A)
@@ -138,7 +138,7 @@ if imgname is not None:
     # ===== Step 3 =====
     st.subheader("Step 4: HP(Helicobacter pylori) prediction")
   
-    if st.session_state.step = 3:
+    if st.session_state.step == 3:
         if st.button('Click here to predict HP'):
             st.write('HP prediction =', 1)
             st.session_state.step = 4
@@ -146,7 +146,7 @@ if imgname is not None:
     # ===== Step 4 =====
     st.subheader("Step 5 and 6: Histology prediction-AG(Atrophic gastritis), IM(Intestinal metaplasia)")
   
-    if st.session_state.step = 4:
+    if st.session_state.step == 4:
         if st.button('Click here to predict AG, IM'):
             st.write('AG_Antrum prediction =', 0)
             st.write('AG_Body prediction =', 1)
@@ -159,7 +159,7 @@ if imgname is not None:
 
     df = pd.DataFrame(['HP', 'AG_Antrum', 'AG_Body', 'IM_Antrum', 'IM_Body', 'Age', 'Gender'], [1, 0, 1, 1, 1, 66, 1])  
     st.dataframe(df, use_container_width=True)
-    if st.session_state.step = 5:
+    if st.session_state.step == 5:
         if st.button('Click here to predict the probability of gastric cancer'):
             st.write('Gastric cancer prediction =', 0.925)
             # st.session_state.step = 6
