@@ -101,7 +101,7 @@ if imgname is not None:
     # ===== Step 2 =====
     st.subheader("Step 2 and 3: Gastric-Antrum/Body/Fundus classification")
     
-    if st.session_state.step >= 2:
+    if st.session_state.step == 2:
         if st.button('Click here to classify Antrum/Body/Fundus'):
             A = os.listdir('Step2and3_ABF/A/')
             st.session_state.A_count = len(A)
@@ -140,7 +140,7 @@ if imgname is not None:
   
     if st.session_state.step == 3:
         if st.button('Click here to predict HP'):
-            st.write('HP prediction =', 1)
+            st.write('HP prediction = 1')
             st.session_state.step = 4
 
     # ===== Step 4 =====
