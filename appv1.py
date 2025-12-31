@@ -19,7 +19,7 @@ st.markdown(unsafe_allow_html=True, body="<p>In this web, you can select the pat
 # =============================================================================
 
 
-imgname = st.selectbox('Select the patient', (None, 'P249750000282','6244535'))
+imgname = st.selectbox('Select the patient', (None, 'P249750000282'))
 # imgname = st.selectbox('Select the CT image', (None, 'CTbrain_1.png','CTbrain_2.png','CTbrain_3.png','CTbrain_4.png','CTbrain_5.png','CTbrain_6.png','CTbrain_7.png','CTbrain_8.png'))
 
 if imgname is not None:
@@ -101,7 +101,7 @@ if imgname is not None:
     # ===== Step 2 =====
     st.subheader("Step 2 and 3: Gastric-Antrum/Body/Fundus classification")
     
-    if st.session_state.step == 2:
+    if st.session_state.step >= 2:
         if st.button('Click here to classify Antrum/Body/Fundus'):
             A = os.listdir('Step2and3_ABF/A/')
             st.session_state.A_count = len(A)
@@ -156,10 +156,14 @@ if imgname is not None:
 
     # ===== Step 5 =====
     st.subheader("Step 7: Gastric cancer prediction")
-
-    df = pd.DataFrame(['HP', 'AG_Antrum', 'AG_Body', 'IM_Antrum', 'IM_Body', 'Age', 'Gender'], [1, 0, 1, 1, 1, 66, 1])  
-    st.dataframe(df, use_container_width=True)
-    if st.session_state.step == 5:
+    
+    if st.button('Click here to show the predictions'):
+        df = pd.DataFrame(['HP', 'AG_Antrum', 'AG_Body', 'IM_Antrum', 'IM_Body', 'Age', 'Gender'], [1, 0, 1, 1, 1, 66, 1])  
+        st.dataframe(df, use_container_width=True)
+        st.session_state.step = 6
+      
+    # ===== Step 5 =====
+    if st.session_state.step == 6:
         if st.button('Click here to predict the probability of gastric cancer'):
             st.write('Gastric cancer prediction =', 0.925)
             # st.session_state.step = 6
