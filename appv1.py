@@ -89,6 +89,8 @@ if imgname is not None:
         st.session_state.F_count = None
     if "F" not in st.session_state:
         st.session_state.F = None
+    if "df" not in st.session_state:
+        st.session_state.df = None
 
     # ===== Step 1 =====
     st.subheader("Step 1: Exclusion criteria-blurred image, NBI, Polyp, Ulcer, Tumor")
@@ -109,11 +111,11 @@ if imgname is not None:
     
     if st.session_state.step == 2:
         if st.button('Click here to classify Antrum/Body/Fundus'):
-            A = os.listdir('Step2and3_ABF/A/')
+            st.session_state.A = os.listdir('Step2and3_ABF/A/')
             st.session_state.A_count = len(A)
-            B = os.listdir('Step2and3_ABF/B/')
+            st.session_state.B = os.listdir('Step2and3_ABF/B/')
             st.session_state.B_count = len(B)
-            F = os.listdir('Step2and3_ABF/F/')
+            st.session_state.F = os.listdir('Step2and3_ABF/F/')
             st.session_state.F_count = len(F)
             st.session_state.step = 3
     
@@ -123,7 +125,7 @@ if imgname is not None:
         st.write('Antrum:', st.session_state.A_count)
         cols = st.columns(10)
         if st.session_state.A is not None:
-            for idx, img_name in enumerate(A):
+            for idx, img_name in enumerate(st.session_state.A):
                 img_path = os.path.join('Step2and3_ABF/A/', img_name)
                 image = Image.open(img_path)
                 cols[idx % 5].image(image, use_container_width=True)    # caption=img_name
@@ -131,7 +133,7 @@ if imgname is not None:
         st.write('Body:', st.session_state.B_count)
         cols = st.columns(10)
         if st.session_state.B is not None:
-            for idx, img_name in enumerate(B):
+            for idx, img_name in enumerate(st.session_state.B):
                 img_path = os.path.join('Step2and3_ABF/B/', img_name)
                 image = Image.open(img_path)
                 cols[idx % 5].image(image, use_container_width=True)    # caption=img_name
@@ -139,7 +141,7 @@ if imgname is not None:
         st.write('Fundus:', st.session_state.F_count)
         cols = st.columns(10)
         if st.session_state.F is not None:
-            for idx, img_name in enumerate(F):
+            for idx, img_name in enumerate(st.session_state.F):
                 img_path = os.path.join('Step2and3_ABF/F/', img_name)
                 image = Image.open(img_path)
                 cols[idx % 5].image(image, use_container_width=True)    # caption=img_name
@@ -157,20 +159,22 @@ if imgname is not None:
   
     if st.session_state.step == 4:
         if st.button('Click here to predict AG, IM'):
-            st.write('AG_Antrum prediction =', 0)
-            st.write('AG_Body prediction =', 1)
-            st.write('IM_Antrum prediction =', 1)
-            st.write('IM_Body prediction =', 1)
+            st.write('AG_Antrum prediction = 0')
+            st.write('AG_Body prediction = 1')
+            st.write('IM_Antrum prediction = 1')
+            st.write('IM_Body prediction = 1')
             st.session_state.step = 5
 
     # ===== Step 5 =====
     st.subheader("Step 7: Gastric cancer prediction")
   
     if st.session_state.step == 5:
-      if st.button('Click here to show the predictions'):
-          df = pd.DataFrame({'Feature': ['HP', 'AG_Antrum', 'AG_Body', 'IM_Antrum', 'IM_Body', 'Age', 'Gender'], 'P249750000282': [1, 0, 1, 1, 1, 66, 1]})  
-          st.dataframe(df, use_container_width=True)
-          st.session_state.step = 6
+        if st.button('Click here to show the predictions'):
+            st.session_state.df = pd.DataFrame({'Feature': ['HP', 'AG_Antrum', 'AG_Body', 'IM_Antrum', 'IM_Body', 'Age', 'Gender'], 'P249750000282': [1, 0, 1, 1, 1, 66, 1]}) 
+            st.session_state.step = 6
+        if st.session_state.df is not None:
+            st.dataframe(st.session_state.df.style.hide_index(), use_container_width=True)
+
       
     # ===== Step 5 =====
     if st.session_state.step == 6:
