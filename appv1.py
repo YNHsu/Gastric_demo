@@ -71,15 +71,17 @@ if imgname is not None:
     #     st.write('Body:', st.session_state.B_count)
 
     #     F = os.listdir('Step2and3_ABF/F/')
+          # st.session_state.F_count = len(F)
+          # # st.subheader('Fundus:', F_count)
+          # st.write('Fundus:', st.session_state.F_count)
 
 
-
-      # 初始化（很重要）
-    if "keep_images_count" not in st.session_state:
-        st.session_state.keep_images_count = None
+    #   # 初始化（很重要）
+    # if "keep_images_count" not in st.session_state:
+    #     st.session_state.keep_images_count = None
     
-    if "A_count" not in st.session_state:
-        st.session_state.A_count = None
+    # if "A_count" not in st.session_state:
+    #     st.session_state.A_count = None
     
     # Button 1
     if st.button('Click here to exclude'):
@@ -97,6 +99,4 @@ if imgname is not None:
     
     if st.session_state.A_count is not None:
         st.write('Antrum:', st.session_state.A_count)
-            st.session_state.F_count = len(F)
-            # st.subheader('Fundus:', F_count)
-            st.write('Fundus:', st.session_state.F_count)
+
