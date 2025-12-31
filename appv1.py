@@ -120,22 +120,26 @@ if imgname is not None:
     if st.session_state.step == 4:
         if st.button('Click here to predict AG, IM'):
             time.sleep(1)
-            st.write('AG_Antrum prediction = ', 0)
-            st.write('AG_Body prediction = ', 1)
-            st.write('IM_Antrum prediction = ', 1)
-            st.write('IM_Body prediction = ', 1)
-            st.session_state.step = 5
+            st.session_state.pred_AG_A = 0
+            st.session_state.pred_AG_B_IM_A_B = 1
+    if "pred_AG_A" in st.session_state and "pred_AG_B_IM_A_B" in st.session_state:  
+        st.write('AG_Antrum prediction = ', st.session_state.pred_AG_A)
+        st.write('AG_Body prediction = ', st.session_state.pred_AG_B_IM_A_B)
+        st.write('IM_Antrum prediction = ', st.session_state.pred_AG_B_IM_A_B)
+        st.write('IM_Body prediction = ', st.session_state.pred_AG_B_IM_A_B)
+        st.session_state.step = 5
 
     # ===== Step 5 =====
     st.subheader("Step 7: Gastric cancer prediction")
   
     if st.session_state.step >= 5:
-        if st.button('Summary the prediction'):
-            st.session_state.df = pd.DataFrame({'Feature': ['HP', 'AG_Antrum', 'AG_Body', 'IM_Antrum', 'IM_Body', 'Age', 'Gender'], 'P249750000282': [1, 0, 1, 1, 1, 66, 1]}) 
-            # st.session_state.step = 6
-          
-        if st.session_state.df is not None:
-            st.dataframe(st.session_state.df, use_container_width=True)
+        # if st.button('Summary the prediction'):
+        st.session_state.df = pd.DataFrame({'Feature': ['HP', 'AG_Antrum', 'AG_Body', 'IM_Antrum', 'IM_Body', 'Age', 'Gender'], 'P249750000282': [1, 0, 1, 1, 1, 66, 1]}) 
+        # st.session_state.step = 6
+        time.sleep(5) 
+    if st.session_state.df is not None:
+        st.write('Summary')
+        st.dataframe(st.session_state.df, use_container_width=True)
 
       
     # ===== Step 6 =====
