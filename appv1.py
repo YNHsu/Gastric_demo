@@ -76,27 +76,41 @@ if imgname is not None:
           # st.write('Fundus:', st.session_state.F_count)
 
 
-      # 初始化（很重要）
+    # 初始化流程狀態
+    if "step" not in st.session_state:
+        st.session_state.step = 1
+    
     if "keep_images_count" not in st.session_state:
         st.session_state.keep_images_count = None
     
     if "A_count" not in st.session_state:
         st.session_state.A_count = None
     
-    # Button 1
-    if st.button('Click here to exclude'):
-        keep_images = os.listdir('Step1_ExclusionCriteria/')
-        st.session_state.keep_images_count = len(keep_images)
     
-    # Button 2
-    if st.button('Click here to recognize Antrum/Body/Fundus'):
-        A = os.listdir('Step2and3_ABF/A/')
-        st.session_state.A_count = len(A)
+    # ===== Step 1 =====
+    st.subheader("Step 1: Exclusion")
     
-    # ===== 顯示區（獨立）=====
+    if st.session_state.step == 1:
+        if st.button('Click here to exclude'):
+            keep_images = os.listdir('Step1_ExclusionCriteria/')
+            st.session_state.keep_images_count = len(keep_images)
+            st.session_state.step = 2   # 前進到下一步
+    
+    # 顯示 Step 1 結果（永遠保留）
     if st.session_state.keep_images_count is not None:
         st.write('Step1_ExclusionCriteria:', st.session_state.keep_images_count)
     
+    
+    # ===== Step 2 =====
+    st.subheader("Step 2: Recognize Antrum / Body / Fundus")
+    
+    if st.session_state.step >= 2:
+        if st.button('Click here to recognize Antrum/Body/Fundus'):
+            A = os.listdir('Step2and3_ABF/A/')
+            st.session_state.A_count = len(A)
+            st.session_state.step = 3
+    
+    # 顯示 Step 2 結果
     if st.session_state.A_count is not None:
         st.write('Antrum:', st.session_state.A_count)
 
