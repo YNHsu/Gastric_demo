@@ -60,7 +60,7 @@ if imgname is not None:
     # ===== Step 1 =====
     st.subheader("Step 1: Exclusion criteria-Blurred image, NBI, Polyp, Ulcer, Tumor")
     st.markdown("Using DenseNet121 model")
-    st.markdown("### Using DenseNet121 model")
+    st.markdown("##### Using DenseNet121 model")
     if st.session_state.step == 1:
         if st.button('Click here to exclude'):
             keep_images = os.listdir('Step1_ExclusionCriteria/')
