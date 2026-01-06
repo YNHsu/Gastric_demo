@@ -49,6 +49,14 @@ if imgname is not None:
     if "df" not in st.session_state:
         st.session_state.df = None
 
+    if "A_HP" not in st.session_state:
+        st.session_state.A_HP = None
+    if "B" not in st.session_state:
+        st.session_state.B_HP = None
+    if "F" not in st.session_state:
+        st.session_state.F_HP = None
+
+  
     # ===== Step 1 =====
     st.subheader("Step 1: Exclusion criteria-blurred image, NBI, Polyp, Ulcer, Tumor")
     
@@ -121,6 +129,7 @@ if imgname is not None:
       
     # Show Step 4 result   
     if st.session_state.A_HP is not None:
+        st.write('Antrum')
         cols = st.columns(10)
         for idx, img_name in enumerate(st.session_state.A_HP):
             img_path = os.path.join('Step4_HP/A/', img_name)
@@ -128,6 +137,7 @@ if imgname is not None:
             cols[idx % 10].image(image, use_container_width=True)    # caption=img_name
     time.sleep(1)            
     if st.session_state.B_HP is not None:
+        st.write('Body')
         cols = st.columns(10)
         for idx, img_name in enumerate(st.session_state.B_HP):
             img_path = os.path.join('Step4_HP/B/', img_name)
@@ -135,6 +145,7 @@ if imgname is not None:
             cols[idx % 10].image(image, use_container_width=True)    # caption=img_name
     time.sleep(1)        
     if st.session_state.F_HP is not None:
+        st.write('Fundus')
         cols = st.columns(10)
         for idx, img_name in enumerate(st.session_state.F_HP):
             img_path = os.path.join('Step4_HP/F/', img_name)
