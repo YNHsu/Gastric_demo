@@ -59,8 +59,7 @@ if imgname is not None:
   
     # ===== Step 1 =====
     st.subheader("Step 1: Exclusion criteria-Blurred image, NBI, Polyp, Ulcer, Tumor")
-    st.markdown("Using DenseNet121 model")
-    st.markdown("##### Using DenseNet121 model")
+    st.markdown("##### <Using modified DenseNet121 model>")
     if st.session_state.step == 1:
         if st.button('Click here to exclude'):
             keep_images = os.listdir('Step1_ExclusionCriteria/')
@@ -74,7 +73,7 @@ if imgname is not None:
     
     # ===== Step 2 =====
     st.subheader("Step 2 and 3: Gastric-Antrum/Body/Fundus classification")
-    
+    st.markdown("##### <Using modified DenseNet201 and DenseNet121 model>")
     if st.session_state.step == 2:
         if st.button('Click here to classify Antrum/Body/Fundus'):
             st.session_state.A = sorted(os.listdir('Step2and3_ABF/A/'))
@@ -116,7 +115,7 @@ if imgname is not None:
 
     # ===== Step 3 =====
     st.subheader("Step 4: HP(Helicobacter pylori) prediction")
-  
+    st.markdown("##### <Using modified DenseNet121, ResNet50 and InceptionResNetV2 model>")
     if st.session_state.step == 3:
         if st.button('Click here to predict HP'):
             st.session_state.pred_hp = 1
@@ -156,7 +155,7 @@ if imgname is not None:
 
     # ===== Step 4 =====
     st.subheader("Step 5 and 6: Histology prediction-AG(Atrophic gastritis), IM(Intestinal metaplasia)")
-  
+    st.markdown("##### <Using modified vision transformer model>")
     if st.session_state.step == 4:
         if st.button('Click here to predict AG, IM'):  
             st.session_state.pred_AG_A = 0
@@ -171,7 +170,7 @@ if imgname is not None:
 
     # ===== Step 5 =====
     st.subheader("Step 7: Gastric cancer prediction")
-  
+    st.markdown("##### <Using logistic regression>")
     if st.session_state.step == 5:
         st.session_state.df = pd.DataFrame({'Feature': ['HP', 'AG_Antrum', 'AG_Body', 'IM_Antrum', 'IM_Body', 'Age', 'Gender'], 'P249750000282': [1, 0, 1, 1, 1, 66, 1]}) 
     time.sleep(3)
