@@ -76,11 +76,11 @@ if imgname is not None:
     
     if st.session_state.step == 2:
         if st.button('Click here to classify Antrum/Body/Fundus'):
-            st.session_state.A = os.listdir('Step2and3_ABF/A/')
+            st.session_state.A = sorted(os.listdir('Step2and3_ABF/A/'))
             st.session_state.A_count = len(st.session_state.A)
-            st.session_state.B = os.listdir('Step2and3_ABF/B/')
+            st.session_state.B = sorted(os.listdir('Step2and3_ABF/B/'))
             st.session_state.B_count = len(st.session_state.B)
-            st.session_state.F = os.listdir('Step2and3_ABF/F/')
+            st.session_state.F = sorted(os.listdir('Step2and3_ABF/F/'))
             st.session_state.F_count = len(st.session_state.F)
             st.session_state.step = 3
     
@@ -119,9 +119,9 @@ if imgname is not None:
     if st.session_state.step == 3:
         if st.button('Click here to predict HP'):
             st.session_state.pred_hp = 1
-            st.session_state.A_HP = os.listdir('Step4_HP/A/')
-            st.session_state.B_HP = os.listdir('Step4_HP/B/')
-            st.session_state.F_HP = os.listdir('Step4_HP/F/')
+            st.session_state.A_HP = sorted(os.listdir('Step4_HP/A/'))
+            st.session_state.B_HP = sorted(os.listdir('Step4_HP/B/'))
+            st.session_state.F_HP = sorted(os.listdir('Step4_HP/F/'))
     time.sleep(1)      
     if "pred_hp" in st.session_state:  
             st.write('HP prediction =', st.session_state.pred_hp, '(total threshold = 0.5)')
