@@ -1,1 +1,1 @@
-gastric cancer prediction APP
+Gastric cancer prediction APP
