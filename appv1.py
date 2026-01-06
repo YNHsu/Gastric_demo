@@ -51,9 +51,9 @@ if imgname is not None:
 
     if "A_HP" not in st.session_state:
         st.session_state.A_HP = None
-    if "B" not in st.session_state:
+    if "B_HP" not in st.session_state:
         st.session_state.B_HP = None
-    if "F" not in st.session_state:
+    if "F_HP" not in st.session_state:
         st.session_state.F_HP = None
 
   
