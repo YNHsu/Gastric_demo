@@ -124,7 +124,7 @@ if imgname is not None:
             st.session_state.F_HP = os.listdir('Step4_HP/F/')
     time.sleep(1)      
     if "pred_hp" in st.session_state:  
-            st.write('HP prediction =', st.session_state.pred_hp)
+            st.write('HP prediction =', st.session_state.pred_hp, '(total threshold = 0.5)')
             st.session_state.step = 4
       
     # Show Step 4 result   
@@ -162,10 +162,10 @@ if imgname is not None:
             st.session_state.pred_AG_B_IM_A_B = 1
     time.sleep(2)
     if "pred_AG_A" in st.session_state and "pred_AG_B_IM_A_B" in st.session_state:  
-        st.write('AG_Antrum prediction = ', st.session_state.pred_AG_A)
-        st.write('AG_Body prediction = ', st.session_state.pred_AG_B_IM_A_B)
-        st.write('IM_Antrum prediction = ', st.session_state.pred_AG_B_IM_A_B)
-        st.write('IM_Body prediction = ', st.session_state.pred_AG_B_IM_A_B)
+        st.write('AG_Antrum prediction = ', st.session_state.pred_AG_A, '(total threshold = 0.2)')
+        st.write('AG_Body prediction = ', st.session_state.pred_AG_B_IM_A_B, '(total threshold = 0.15)')
+        st.write('IM_Antrum prediction = ', st.session_state.pred_AG_B_IM_A_B, '(total threshold = 0.07)')
+        st.write('IM_Body prediction = ', st.session_state.pred_AG_B_IM_A_B, '(total threshold = 0.06)')
         st.session_state.step = 5
 
     # ===== Step 5 =====
