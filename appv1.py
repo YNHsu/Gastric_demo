@@ -111,10 +111,36 @@ if imgname is not None:
     if st.session_state.step == 3:
         if st.button('Click here to predict HP'):
             st.session_state.pred_hp = 1
+            st.session_state.A_HP = os.listdir('Step4_HP/A/')
+            st.session_state.B_HP = os.listdir('Step4_HP/B/')
+            st.session_state.F_HP = os.listdir('Step4_HP/F/')
     time.sleep(1)      
     if "pred_hp" in st.session_state:  
             st.write('HP prediction =', st.session_state.pred_hp)
             st.session_state.step = 4
+      
+    # Show Step 4 result   
+    if st.session_state.A_HP is not None:
+        cols = st.columns(10)
+        for idx, img_name in enumerate(st.session_state.A_HP):
+            img_path = os.path.join('Step4_HP/A/', img_name)
+            image = Image.open(img_path)
+            cols[idx % 10].image(image, use_container_width=True)    # caption=img_name
+    time.sleep(1)            
+    if st.session_state.B_HP is not None:
+        cols = st.columns(10)
+        for idx, img_name in enumerate(st.session_state.B_HP):
+            img_path = os.path.join('Step4_HP/B/', img_name)
+            image = Image.open(img_path)
+            cols[idx % 10].image(image, use_container_width=True)    # caption=img_name
+    time.sleep(1)        
+    if st.session_state.F_HP is not None:
+        cols = st.columns(10)
+        for idx, img_name in enumerate(st.session_state.F_HP):
+            img_path = os.path.join('Step4_HP/F/', img_name)
+            image = Image.open(img_path)
+            cols[idx % 10].image(image, use_container_width=True)    # caption=img_name
+
 
     # ===== Step 4 =====
     st.subheader("Step 5 and 6: Histology prediction-AG(Atrophic gastritis), IM(Intestinal metaplasia)")
