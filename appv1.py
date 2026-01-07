@@ -123,11 +123,9 @@ if imgname is not None:
             st.session_state.B_HP = sorted(os.listdir('Step4_HP/B/'))
             st.session_state.F_HP = sorted(os.listdir('Step4_HP/F/'))
     time.sleep(1)      
-    if "pred_hp" in st.session_state:  
-            st.write('HP prediction =', st.session_state.pred_hp, '(total threshold = 0.5)')
-            st.session_state.step = 4
+
       
-    # Show Step 4 result   
+    # Show Step 3 result   
     if st.session_state.A_HP is not None:
         st.write('Antrum: HP prediction =', 0.724)
         cols = st.columns(10)
@@ -151,7 +149,9 @@ if imgname is not None:
             img_path = os.path.join('Step4_HP/F/', img_name)
             image = Image.open(img_path)
             cols[idx % 10].image(image, use_container_width=True)    # caption=img_name
-
+    if "pred_hp" in st.session_state:  
+            st.write('Total HP prediction =', st.session_state.pred_hp, '(total threshold = 0.5)')
+            st.session_state.step = 4
 
     # ===== Step 4 =====
     st.subheader("Step 5 and 6: Histology prediction-AG(Atrophic gastritis), IM(Intestinal metaplasia)")
