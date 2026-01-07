@@ -175,7 +175,7 @@ if imgname is not None:
             st.session_state.IM_A = sorted(os.listdir('Step6_IM/A/'))
             st.session_state.IM_B = sorted(os.listdir('Step6_IM/B/'))
     time.sleep(2)
-    if "pred_AG_A" in st.session_state and "pred_AG_B_IM_A_B" in st.session_state: 
+    if "pred_AG_A" in st.session_state and "pred_AG_B" in st.session_state and "pred_IM_A" in st.session_state and "pred_IM_B" in st.session_state: 
         if st.session_state.AG_A is not None:
             st.write('Antrum: AG prediction =', st.session_state.pred_AG_A, '(Total threshold = 0.2)')
             cols = st.columns(10)
