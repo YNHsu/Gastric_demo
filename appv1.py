@@ -126,7 +126,7 @@ if imgname is not None:
     st.markdown("##### <Using modified DenseNet121, ResNet50 and InceptionResNetV2 model>")
     if st.session_state.step == 3:
         if st.button('Click here to predict HP'):
-            st.session_state.pred_hp = 1
+            st.session_state.pred_hp = 0.694
             st.session_state.A_HP = sorted(os.listdir('Step4_HP/A/'))
             st.session_state.B_HP = sorted(os.listdir('Step4_HP/B/'))
             st.session_state.F_HP = sorted(os.listdir('Step4_HP/F/'))
