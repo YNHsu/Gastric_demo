@@ -185,7 +185,7 @@ if imgname is not None:
                 cols[idx % 10].image(image, use_container_width=True)    # caption=img_name
 
         if st.session_state.AG_B is not None:
-            st.write('Body: AG prediction =', st.session_state.pred_AG_B_IM_A_B, '(Total threshold = 0.15)')
+            st.write('Body: AG prediction =', st.session_state.pred_AG_B, '(Total threshold = 0.15)')
             cols = st.columns(10)
             for idx, img_name in enumerate(st.session_state.AG_B):
                 img_path = os.path.join('Step5_AG/B/', img_name)
@@ -193,7 +193,7 @@ if imgname is not None:
                 cols[idx % 10].image(image, use_container_width=True)    # caption=img_name
 
         if st.session_state.IM_A is not None:
-            st.write('Antrum: IM prediction =', st.session_state.pred_AG_B_IM_A_B, '(Total threshold = 0.07)')
+            st.write('Antrum: IM prediction =', st.session_state.pred_IM_A, '(Total threshold = 0.07)')
             cols = st.columns(10)
             for idx, img_name in enumerate(st.session_state.IM_A):
                 img_path = os.path.join('Step6_IM/A/', img_name)
@@ -201,7 +201,7 @@ if imgname is not None:
                 cols[idx % 10].image(image, use_container_width=True)    # caption=img_name
 
         if st.session_state.IM_B is not None:
-            st.write('Body: IM prediction =', st.session_state.pred_AG_B_IM_A_B, '(Total threshold = 0.06)')
+            st.write('Body: IM prediction =', st.session_state.pred_IM_B, '(Total threshold = 0.06)')
             cols = st.columns(10)
             for idx, img_name in enumerate(st.session_state.IM_B):
                 img_path = os.path.join('Step6_IM/B/', img_name)
