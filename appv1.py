@@ -56,6 +56,14 @@ if imgname is not None:
     if "F_HP" not in st.session_state:
         st.session_state.F_HP = None
 
+    if "AG_A" not in st.session_state:
+        st.session_state.AG_A = None
+    if "AG_B" not in st.session_state:
+        st.session_state.AG_B = None
+    if "IM_A" not in st.session_state:
+        st.session_state.IM_A = None
+    if "IM_B" not in st.session_state:
+        st.session_state.IM_B = None
   
     # ===== Step 1 =====
     st.subheader("Step 1: Exclusion criteria-Blurred image, NBI, Polyp, Ulcer, Tumor")
@@ -150,7 +158,7 @@ if imgname is not None:
             image = Image.open(img_path)
             cols[idx % 10].image(image, use_container_width=True)    # caption=img_name
     if "pred_hp" in st.session_state:  
-            st.write('Total HP prediction =', st.session_state.pred_hp, '(total threshold = 0.5)')
+            st.write('Total HP prediction =', st.session_state.pred_hp, '(Total threshold = 0.5)')
             st.session_state.step = 4
 
     # ===== Step 4 =====
@@ -160,12 +168,43 @@ if imgname is not None:
         if st.button('Click here to predict AG, IM'):  
             st.session_state.pred_AG_A = 0
             st.session_state.pred_AG_B_IM_A_B = 1
+            st.session_state.AG_A = sorted(os.listdir('Step5_AG/A/'))
+            st.session_state.AG_B = sorted(os.listdir('Step5_AG/B/'))
+            st.session_state.IM_A = sorted(os.listdir('Step6_IM/A/'))
+            st.session_state.IM_B = sorted(os.listdir('Step6_IM/B/'))
     time.sleep(2)
-    if "pred_AG_A" in st.session_state and "pred_AG_B_IM_A_B" in st.session_state:  
-        st.write('AG_Antrum prediction = ', st.session_state.pred_AG_A, '(total threshold = 0.2)')
-        st.write('AG_Body prediction = ', st.session_state.pred_AG_B_IM_A_B, '(total threshold = 0.15)')
-        st.write('IM_Antrum prediction = ', st.session_state.pred_AG_B_IM_A_B, '(total threshold = 0.07)')
-        st.write('IM_Body prediction = ', st.session_state.pred_AG_B_IM_A_B, '(total threshold = 0.06)')
+    if "pred_AG_A" in st.session_state and "pred_AG_B_IM_A_B" in st.session_state: 
+        if st.session_state.AG_A is not None:
+            st.write('AG_Antrum prediction = ', st.session_state.pred_AG_A, '(Total threshold = 0.2)')
+            cols = st.columns(10)
+            for idx, img_name in enumerate(st.session_state.AG_A):
+                img_path = os.path.join('Step5_AG/A/', img_name)
+                image = Image.open(img_path)
+                cols[idx % 10].image(image, use_container_width=True)    # caption=img_name
+
+        if st.session_state.AG_B is not None:
+            st.write('AG_Body prediction = ', st.session_state.pred_AG_B_IM_A_B, '(Total threshold = 0.15)')
+            cols = st.columns(10)
+            for idx, img_name in enumerate(st.session_state.AG_B):
+                img_path = os.path.join('Step5_AG/B/', img_name)
+                image = Image.open(img_path)
+                cols[idx % 10].image(image, use_container_width=True)    # caption=img_name
+
+        if st.session_state.IM_A is not None:
+            st.write('IM_Antrum prediction = ', st.session_state.pred_AG_B_IM_A_B, '(Total threshold = 0.07)')
+            cols = st.columns(10)
+            for idx, img_name in enumerate(st.session_state.IM_A):
+                img_path = os.path.join('Step5_IM/A/', img_name)
+                image = Image.open(img_path)
+                cols[idx % 10].image(image, use_container_width=True)    # caption=img_name
+
+        if st.session_state.IM_B is not None:
+            st.write('IM_Body prediction = ', st.session_state.pred_AG_B_IM_A_B, '(Total threshold = 0.06)')
+            cols = st.columns(10)
+            for idx, img_name in enumerate(st.session_state.IM_B):
+                img_path = os.path.join('Step5_IM/B/', img_name)
+                image = Image.open(img_path)
+                cols[idx % 10].image(image, use_container_width=True)    # caption=img_name
         st.session_state.step = 5
 
     # ===== Step 5 =====
