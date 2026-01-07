@@ -129,7 +129,7 @@ if imgname is not None:
       
     # Show Step 4 result   
     if st.session_state.A_HP is not None:
-        st.write('Antrum')
+        st.write('Antrum: HP prediction =', 0.724)
         cols = st.columns(10)
         for idx, img_name in enumerate(st.session_state.A_HP):
             img_path = os.path.join('Step4_HP/A/', img_name)
@@ -137,7 +137,7 @@ if imgname is not None:
             cols[idx % 10].image(image, use_container_width=True)    # caption=img_name
     time.sleep(1)            
     if st.session_state.B_HP is not None:
-        st.write('Body')
+        st.write('Body: HP prediction =', 0.732)
         cols = st.columns(10)
         for idx, img_name in enumerate(st.session_state.B_HP):
             img_path = os.path.join('Step4_HP/B/', img_name)
@@ -145,7 +145,7 @@ if imgname is not None:
             cols[idx % 10].image(image, use_container_width=True)    # caption=img_name
     time.sleep(1)        
     if st.session_state.F_HP is not None:
-        st.write('Fundus')
+        st.write('Fundus: HP prediction =', 0.626)
         cols = st.columns(10)
         for idx, img_name in enumerate(st.session_state.F_HP):
             img_path = os.path.join('Step4_HP/F/', img_name)
