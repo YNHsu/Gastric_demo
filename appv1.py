@@ -170,14 +170,13 @@ if imgname is not None:
 
     # ===== Step 5 =====
     st.subheader("Step 7: Gastric cancer prediction")
-    st.markdown("##### <Using logistic regression>")
     if st.session_state.step == 5:
         st.session_state.df = pd.DataFrame({'Feature': ['HP', 'AG_Antrum', 'AG_Body', 'IM_Antrum', 'IM_Body', 'Age', 'Gender'], 'P249750000282': [1, 0, 1, 1, 1, 66, 1]}) 
     time.sleep(3)
     if st.session_state.df is not None:
         st.write('Overall summary')
         st.dataframe(st.session_state.df, use_container_width=True)
-      
+        st.markdown("##### <Using logistic regression>")
         if st.button('Click here to predict the probability of gastric cancer'):
             time.sleep(1)
             st.write('Gastric cancer prediction =', 0.925)
