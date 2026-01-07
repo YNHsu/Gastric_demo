@@ -166,8 +166,10 @@ if imgname is not None:
     st.markdown("##### <Using modified vision transformer model>")
     if st.session_state.step == 4:
         if st.button('Click here to predict AG, IM'):  
-            st.session_state.pred_AG_A = 0
-            st.session_state.pred_AG_B_IM_A_B = 1
+            st.session_state.pred_AG_A = 3/30
+            st.session_state.pred_AG_B = 7/45
+            st.session_state.pred_IM_A = 4/30
+            st.session_state.pred_IM_B = 6/45
             st.session_state.AG_A = sorted(os.listdir('Step5_AG/A/'))
             st.session_state.AG_B = sorted(os.listdir('Step5_AG/B/'))
             st.session_state.IM_A = sorted(os.listdir('Step6_IM/A/'))
