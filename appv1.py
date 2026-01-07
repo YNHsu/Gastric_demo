@@ -10,7 +10,7 @@ import time
 # App Title
 st.title("Gastric cancer prediction")
 
-st.markdown(unsafe_allow_html=True, body="<p>In this web, you can select the patient folder and predict the probability of gastric cancer.</p>")
+st.markdown(unsafe_allow_html=True, body="<p>In this web, you can select the patient and predict the probability of gastric cancer.</p>")
                                         
 
 # =============================================================================
@@ -69,7 +69,7 @@ if imgname is not None:
     st.subheader("Step 1: Exclusion criteria-Blurred image, NBI, Polyp, Ulcer, Tumor")
     st.markdown("##### <Using modified DenseNet121 model>")
     if st.session_state.step == 1:
-        if st.button('Click here to exclude'):
+        if st.button('Click here to exclude blurred image, NBI, Polyp, Ulcer, Tumor'):
             keep_images = os.listdir('Step1_ExclusionCriteria/')
             st.session_state.keep_images_count = len(keep_images)
             st.session_state.step = 2   # next step
@@ -80,10 +80,10 @@ if imgname is not None:
     
     
     # ===== Step 2 =====
-    st.subheader("Step 2 and 3: Gastric-Antrum/Body/Fundus classification")
+    st.subheader("Step 2 and 3: Gastric-Antrum / Body / Fundus classification")
     st.markdown("##### <Using modified DenseNet201 and DenseNet121 model>")
     if st.session_state.step == 2:
-        if st.button('Click here to classify Antrum/Body/Fundus'):
+        if st.button('Click here to classify Antrum / Body / Fundus'):
             st.session_state.A = sorted(os.listdir('Step2and3_ABF/A/'))
             st.session_state.A_count = len(st.session_state.A)
             st.session_state.B = sorted(os.listdir('Step2and3_ABF/B/'))
