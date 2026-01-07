@@ -194,7 +194,7 @@ if imgname is not None:
             st.write('IM_Antrum prediction = ', st.session_state.pred_AG_B_IM_A_B, '(Total threshold = 0.07)')
             cols = st.columns(10)
             for idx, img_name in enumerate(st.session_state.IM_A):
-                img_path = os.path.join('Step5_IM/A/', img_name)
+                img_path = os.path.join('Step6_IM/A/', img_name)
                 image = Image.open(img_path)
                 cols[idx % 10].image(image, use_container_width=True)    # caption=img_name
 
@@ -202,7 +202,7 @@ if imgname is not None:
             st.write('IM_Body prediction = ', st.session_state.pred_AG_B_IM_A_B, '(Total threshold = 0.06)')
             cols = st.columns(10)
             for idx, img_name in enumerate(st.session_state.IM_B):
-                img_path = os.path.join('Step5_IM/B/', img_name)
+                img_path = os.path.join('Step6_IM/B/', img_name)
                 image = Image.open(img_path)
                 cols[idx % 10].image(image, use_container_width=True)    # caption=img_name
         st.session_state.step = 5
