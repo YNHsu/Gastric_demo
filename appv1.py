@@ -19,10 +19,10 @@ st.markdown(unsafe_allow_html=True, body="<p>In this web, you can select the pat
 # =============================================================================
 
 
-imgname = st.selectbox('Select the patient', (None, '00001'))    # 'P249750000282'
+imgname = st.selectbox('Select the patient', (None, '00000','00001'))    # 'P249750000282'
 # imgname = st.selectbox('Select the CT image', (None, 'CTbrain_1.png','CTbrain_2.png','CTbrain_3.png','CTbrain_4.png','CTbrain_5.png','CTbrain_6.png','CTbrain_7.png','CTbrain_8.png'))
 
-if imgname is not None:
+if imgname == '00001':
     images = os.listdir('gastric_image/')
     st.session_state.images_count = len(images)
     # st.subheader('Raw image:', images_count)
