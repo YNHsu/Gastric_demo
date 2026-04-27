@@ -226,7 +226,7 @@ if imgname == '00001':
 
 
 elif imgname == '00000':
-    images = os.listdir('gastric_image/')
+    images = os.listdir('00000/gastric_image/')
     st.session_state.images_count = len(images)
     # st.subheader('Raw image:', images_count)
     st.write('Raw images:', st.session_state.images_count)
@@ -273,7 +273,7 @@ elif imgname == '00000':
     st.markdown("##### <Using modified DenseNet121 model>")
     if st.session_state.step == 1:
         if st.button('Click here to exclude blurred image, NBI, Polyp, Ulcer, Tumor'):
-            keep_images = os.listdir('Step1_ExclusionCriteria/')
+            keep_images = os.listdir('00000/Step1_ExclusionCriteria/')
             st.session_state.keep_images_count = len(keep_images)
             st.session_state.step = 2   # next step
     
@@ -287,11 +287,11 @@ elif imgname == '00000':
     st.markdown("##### <Using modified DenseNet201 and DenseNet121 model>")
     if st.session_state.step == 2:
         if st.button('Click here to classify Antrum / Body / Fundus'):
-            st.session_state.A = sorted(os.listdir('Step2and3_ABF/A/'))
+            st.session_state.A = sorted(os.listdir('00000/Step2and3_ABF/A/'))
             st.session_state.A_count = len(st.session_state.A)
-            st.session_state.B = sorted(os.listdir('Step2and3_ABF/B/'))
+            st.session_state.B = sorted(os.listdir('00000/Step2and3_ABF/B/'))
             st.session_state.B_count = len(st.session_state.B)
-            st.session_state.F = sorted(os.listdir('Step2and3_ABF/F/'))
+            st.session_state.F = sorted(os.listdir('00000/Step2and3_ABF/F/'))
             st.session_state.F_count = len(st.session_state.F)
             st.session_state.step = 3
     
@@ -302,7 +302,7 @@ elif imgname == '00000':
         cols = st.columns(10)
         if st.session_state.A is not None:
             for idx, img_name in enumerate(st.session_state.A):
-                img_path = os.path.join('Step2and3_ABF/A/', img_name)
+                img_path = os.path.join('00000/Step2and3_ABF/A/', img_name)
                 image = Image.open(img_path)
                 cols[idx % 10].image(image, use_container_width=True)    # caption=img_name
     time.sleep(1)        
@@ -311,7 +311,7 @@ elif imgname == '00000':
         cols = st.columns(10)
         if st.session_state.B is not None:
             for idx, img_name in enumerate(st.session_state.B):
-                img_path = os.path.join('Step2and3_ABF/B/', img_name)
+                img_path = os.path.join('00000/Step2and3_ABF/B/', img_name)
                 image = Image.open(img_path)
                 cols[idx % 10].image(image, use_container_width=True)    # caption=img_name
     time.sleep(1)
@@ -320,7 +320,7 @@ elif imgname == '00000':
         cols = st.columns(10)
         if st.session_state.F is not None:
             for idx, img_name in enumerate(st.session_state.F):
-                img_path = os.path.join('Step2and3_ABF/F/', img_name)
+                img_path = os.path.join('00000/Step2and3_ABF/F/', img_name)
                 image = Image.open(img_path)
                 cols[idx % 10].image(image, use_container_width=True)    # caption=img_name
 
@@ -330,9 +330,9 @@ elif imgname == '00000':
     if st.session_state.step == 3:
         if st.button('Click here to predict HP'):
             st.session_state.pred_hp = 0.391
-            st.session_state.A_HP = sorted(os.listdir('Step4_HP/A/'))
-            st.session_state.B_HP = sorted(os.listdir('Step4_HP/B/'))
-            st.session_state.F_HP = sorted(os.listdir('Step4_HP/F/'))
+            st.session_state.A_HP = sorted(os.listdir('00000/Step4_HP/A/'))
+            st.session_state.B_HP = sorted(os.listdir('00000/Step4_HP/B/'))
+            st.session_state.F_HP = sorted(os.listdir('00000/Step4_HP/F/'))
     time.sleep(1)      
 
       
@@ -341,7 +341,7 @@ elif imgname == '00000':
         st.write('Antrum: HP prediction =', 0.450)
         cols = st.columns(10)
         for idx, img_name in enumerate(st.session_state.A_HP):
-            img_path = os.path.join('Step4_HP/A/', img_name)
+            img_path = os.path.join('00000/Step4_HP/A/', img_name)
             image = Image.open(img_path)
             cols[idx % 10].image(image, use_container_width=True)    # caption=img_name
     time.sleep(1)            
@@ -349,7 +349,7 @@ elif imgname == '00000':
         st.write('Body: HP prediction =', 0.537)
         cols = st.columns(10)
         for idx, img_name in enumerate(st.session_state.B_HP):
-            img_path = os.path.join('Step4_HP/B/', img_name)
+            img_path = os.path.join('00000/Step4_HP/B/', img_name)
             image = Image.open(img_path)
             cols[idx % 10].image(image, use_container_width=True)    # caption=img_name
     time.sleep(1)        
@@ -357,7 +357,7 @@ elif imgname == '00000':
         st.write('Fundus: HP prediction =', 0.188)
         cols = st.columns(10)
         for idx, img_name in enumerate(st.session_state.F_HP):
-            img_path = os.path.join('Step4_HP/F/', img_name)
+            img_path = os.path.join('00000/Step4_HP/F/', img_name)
             image = Image.open(img_path)
             cols[idx % 10].image(image, use_container_width=True)    # caption=img_name
     if "pred_hp" in st.session_state:  
@@ -373,17 +373,17 @@ elif imgname == '00000':
             st.session_state.pred_AG_B = 0.170
             st.session_state.pred_IM_A = 0.150
             st.session_state.pred_IM_B = 0.050
-            st.session_state.AG_A = sorted(os.listdir('Step5_AG/A/'))
-            st.session_state.AG_B = sorted(os.listdir('Step5_AG/B/'))
-            st.session_state.IM_A = sorted(os.listdir('Step6_IM/A/'))
-            st.session_state.IM_B = sorted(os.listdir('Step6_IM/B/'))
+            st.session_state.AG_A = sorted(os.listdir('00000/Step5_AG/A/'))
+            st.session_state.AG_B = sorted(os.listdir('00000/Step5_AG/B/'))
+            st.session_state.IM_A = sorted(os.listdir('00000/Step6_IM/A/'))
+            st.session_state.IM_B = sorted(os.listdir('00000/Step6_IM/B/'))
     time.sleep(2)
     if "pred_AG_A" in st.session_state and "pred_AG_B" in st.session_state and "pred_IM_A" in st.session_state and "pred_IM_B" in st.session_state: 
         if st.session_state.AG_A is not None:
             st.write('Antrum: AG prediction =', st.session_state.pred_AG_A, '(Total threshold = 0.2)')
             cols = st.columns(10)
             for idx, img_name in enumerate(st.session_state.AG_A):
-                img_path = os.path.join('Step5_AG/A/', img_name)
+                img_path = os.path.join('00000/Step5_AG/A/', img_name)
                 image = Image.open(img_path)
                 cols[idx % 10].image(image, use_container_width=True)    # caption=img_name
 
@@ -391,7 +391,7 @@ elif imgname == '00000':
             st.write('Body: AG prediction =', st.session_state.pred_AG_B, '(Total threshold = 0.15)')
             cols = st.columns(10)
             for idx, img_name in enumerate(st.session_state.AG_B):
-                img_path = os.path.join('Step5_AG/B/', img_name)
+                img_path = os.path.join('00000/Step5_AG/B/', img_name)
                 image = Image.open(img_path)
                 cols[idx % 10].image(image, use_container_width=True)    # caption=img_name
 
@@ -399,7 +399,7 @@ elif imgname == '00000':
             st.write('Antrum: IM prediction =', st.session_state.pred_IM_A, '(Total threshold = 0.07)')
             cols = st.columns(10)
             for idx, img_name in enumerate(st.session_state.IM_A):
-                img_path = os.path.join('Step6_IM/A/', img_name)
+                img_path = os.path.join('00000/Step6_IM/A/', img_name)
                 image = Image.open(img_path)
                 cols[idx % 10].image(image, use_container_width=True)    # caption=img_name
 
@@ -407,7 +407,7 @@ elif imgname == '00000':
             st.write('Body: IM prediction =', st.session_state.pred_IM_B, '(Total threshold = 0.06)')
             cols = st.columns(10)
             for idx, img_name in enumerate(st.session_state.IM_B):
-                img_path = os.path.join('Step6_IM/B/', img_name)
+                img_path = os.path.join('00000/Step6_IM/B/', img_name)
                 image = Image.open(img_path)
                 cols[idx % 10].image(image, use_container_width=True)    # caption=img_name
         st.session_state.step = 5
