@@ -374,7 +374,7 @@ elif imgname == '00000':
     if st.session_state.step == 4:
         if st.button('Click here to predict AG, IM'):  
             st.session_state.pred_AG_A = 0.050
-            st.session_state.pred_AG_B = 0.170
+            st.session_state.pred_AG_B = 0.140
             st.session_state.pred_IM_A = 0.150
             st.session_state.pred_IM_B = 0.050
             st.session_state.AG_A = sorted(os.listdir('00000/Step5_AG/A/'))
@@ -427,4 +427,4 @@ elif imgname == '00000':
         st.markdown("##### <Using logistic regression>")
         if st.button('Click here to predict the probability of gastric cancer'):
             time.sleep(1)
-            st.write('Gastric cancer prediction =', 0.083)
+            st.write('Gastric cancer prediction =', 0.327)
