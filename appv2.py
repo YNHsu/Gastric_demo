@@ -178,7 +178,7 @@ if imgname == '00001':
             st.session_state.AG_B = sorted(os.listdir('Step5_AG/B/'))
             st.session_state.IM_A = sorted(os.listdir('Step6_IM/A/'))
             st.session_state.IM_B = sorted(os.listdir('Step6_IM/B/'))
-    time.sleep(2)
+    time.sleep(1)
     if "pred_AG_A" in st.session_state and "pred_AG_B" in st.session_state and "pred_IM_A" in st.session_state and "pred_IM_B" in st.session_state: 
         if st.session_state.AG_A is not None:
             st.write('Antrum: AG prediction =', st.session_state.pred_AG_A, '(Total threshold = 0.2)')
@@ -217,7 +217,7 @@ if imgname == '00001':
     st.subheader("Step 7: Gastric cancer prediction")
     if st.session_state.step == 5:
         st.session_state.df = pd.DataFrame({'Feature': ['HP', 'AG_Antrum', 'AG_Body', 'IM_Antrum', 'IM_Body', 'Age', 'Sex'], 'P249750000282': [1, 0, 1, 1, 1, 66, 1]}) 
-    time.sleep(3)
+    time.sleep(1)
     if st.session_state.df is not None:
         st.write('Overall summary')
         st.dataframe(st.session_state.df, use_container_width=True)
@@ -381,7 +381,7 @@ elif imgname == '00000':
             st.session_state.AG_B = sorted(os.listdir('00000/Step5_AG/B/'))
             st.session_state.IM_A = sorted(os.listdir('00000/Step6_IM/A/'))
             st.session_state.IM_B = sorted(os.listdir('00000/Step6_IM/B/'))
-    time.sleep(2)
+    time.sleep(1)
     if "pred_AG_A" in st.session_state and "pred_AG_B" in st.session_state and "pred_IM_A" in st.session_state and "pred_IM_B" in st.session_state: 
         if st.session_state.AG_A is not None:
             st.write('Antrum: AG prediction =', st.session_state.pred_AG_A, '(Total threshold = 0.2)')
@@ -420,7 +420,7 @@ elif imgname == '00000':
     st.subheader("Step 7: Gastric cancer prediction")
     if st.session_state.step == 5:
         st.session_state.df = pd.DataFrame({'Feature': ['HP', 'AG_Antrum', 'AG_Body', 'IM_Antrum', 'IM_Body', 'Age', 'Sex'], 'P249750000282': [0, 0, 0, 1, 0, 75, 1]}) 
-    time.sleep(3)
+    time.sleep(1)
     if st.session_state.df is not None:
         st.write('Overall summary')
         st.dataframe(st.session_state.df, use_container_width=True)
