@@ -224,7 +224,7 @@ if imgname == '00001':
         st.markdown("##### <Using logistic regression>")
         if st.button('Click here to predict the probability of gastric cancer'):
             time.sleep(1)
-            st.write('Gastric cancer prediction =', 0.925)
+            st.write('Gastric cancer prediction =', 0.925, '(Threshold = 0.538)')
 
 
 
@@ -427,4 +427,4 @@ elif imgname == '00000':
         st.markdown("##### <Using logistic regression>")
         if st.button('Click here to predict the probability of gastric cancer'):
             time.sleep(1)
-            st.write('Gastric cancer prediction =', 0.327)
+            st.write('Gastric cancer prediction =', 0.327, '(Threshold = 0.538)')
